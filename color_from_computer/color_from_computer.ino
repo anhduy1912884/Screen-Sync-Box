@@ -9,26 +9,25 @@ typedef struct {
   byte b ;
 } color ;
 
-color led[21];
+color led[NUMPIXELS];
 
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   pixels.begin();
   pixels.show(); // Initialize all pixels to 'off'
 }
 
 void loop() {
-  int n = 3 ;
-  if (Serial.available() >= 6) {
-    for (int i = 0 ; i < 6 ; i+= n) {
+  if (Serial.available() >= (63)) {
+    for (int i = 0 ; i < NUMPIXELS  ; i++) {
     led[i].r = Serial.read();
     led[i].g = Serial.read();
     led[i].b = Serial.read();
     }
    // int n = 3 ;
-    for (int j = 0 ; j <6 ; j+= 3) {
+    for (int j = 0 ; j < NUMPIXELS ; j++) {
     pixels.setPixelColor(j, pixels.Color(led[j].r , led[j].g, led[j].b));
     pixels.setPixelColor(j+1, pixels.Color(led[j].r , led[j].g, led[j].b));
     pixels.setPixelColor(j+2, pixels.Color(led[j].r , led[j].g, led[j].b));
