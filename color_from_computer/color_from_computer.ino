@@ -2,7 +2,7 @@
 
 #define PIN            7
 #define NUMPIXELS      21
-#define NUM_LED_ON  9
+#define NUM_LED_ON  4
 #define COLOR(x) pixels.Color(led[x].r , led[x].g, led[x].b)
 int n ;
 typedef struct {
@@ -29,12 +29,17 @@ void loop() {
     led[i].b = Serial.read();
     }
     n = 0 ;
-    for (int j = 0 ; j < NUM_LED_ON ; j++) {
-      
+    for (int j = 0 ; j < NUM_LED_ON ; j++) {      
       pixels.setPixelColor(n, COLOR(j));
       n++ ;
       pixels.setPixelColor(n, COLOR(j));
       n++ ;
+      pixels.setPixelColor(n, COLOR(j));
+      n++ ;
+      pixels.setPixelColor(n, COLOR(j));
+      n++ ;
+      pixels.setPixelColor(n, COLOR(j));
+      n++ ;       
     }
     pixels.show();
   }
